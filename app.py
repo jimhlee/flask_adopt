@@ -5,7 +5,7 @@ import os
 from flask import Flask
 from flask_debugtoolbar import DebugToolbarExtension
 
-from models import connect_db
+from models import connect_db, Pet
 
 app = Flask(__name__)
 
@@ -22,3 +22,10 @@ connect_db(app)
 # app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 toolbar = DebugToolbarExtension(app)
+
+
+@app.get('/')
+def display_homepage():
+    pets = Pet.query.all().order_by()
+
+# TODO: needs to render pet_list
