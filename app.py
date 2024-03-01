@@ -2,9 +2,9 @@
 
 import os
 
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, flash
 from flask_debugtoolbar import DebugToolbarExtension
-
+from forms import AddPetForm
 from models import connect_db, db, Pet
 
 app = Flask(__name__)
@@ -29,3 +29,22 @@ def display_homepage():
     pets = Pet.query.all().order_by()
 
     return render_template('pet_list.html', pets=pets)
+
+@app.route('/add', methods=['GET', 'POST'])
+def add_pet():
+
+    form = AddPetForm()
+
+    if form.validate_on_submit():
+        name = form.name.data
+        species = form.species.data
+        photo_url = form.photo_url.data
+        age = form.age.data
+        notes = form.notes.data
+
+        flash(f'{name} added to pet list!')
+        # This is the get that occurs after the post
+        return redirect('/add')
+
+    else:
+        return render_template('new_pet_form.html', form=form)
