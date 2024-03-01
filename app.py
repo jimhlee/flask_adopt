@@ -2,10 +2,10 @@
 
 import os
 
-from flask import Flask
+from flask import Flask, render_template
 from flask_debugtoolbar import DebugToolbarExtension
 
-from models import connect_db, Pet
+from models import connect_db, db, Pet
 
 app = Flask(__name__)
 
@@ -28,4 +28,4 @@ toolbar = DebugToolbarExtension(app)
 def display_homepage():
     pets = Pet.query.all().order_by()
 
-# TODO: needs to render pet_list
+    return render_template('pet_list.html', pets=pets)

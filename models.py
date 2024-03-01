@@ -18,9 +18,6 @@ def connect_db(app):
 class Pet(db.Model):
     __tablename__ = 'pets'
 
-    __table_args__ = db.CheckConstraint(
-        'age in (baby, young, adult, senior)')
-
     id = db.Column(
         db.Integer,
         primary_key = True,
@@ -45,6 +42,7 @@ class Pet(db.Model):
 
     age = db.Column(
         db.Text,
+        db.CheckConstraint("age IN ('baby', 'young', 'adult', 'senior')"),
         nullable = False
     )
 
