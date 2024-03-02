@@ -10,7 +10,7 @@
 <li>
   <p>{{ pet.name }}</p>
   <img src="{{ pet.photo_url}}" alt="Photo of {{ pet.name }}">
-  {% if pet.available == True %}<p><b>Available</b></p>{{% endif %}}
+  {% if pet.available == True %}<p><b>Available</b></p>{% endif %}
 </li>
 
 {% endfor %}

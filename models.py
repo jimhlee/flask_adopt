@@ -1,7 +1,7 @@
 """Models for adopt app."""
 
 from flask_sqlalchemy import SQLAlchemy
-from forms import AddPetForm
+
 
 db = SQLAlchemy()
 

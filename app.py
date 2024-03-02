@@ -26,7 +26,7 @@ toolbar = DebugToolbarExtension(app)
 
 @app.get('/')
 def display_homepage():
-    pets = Pet.query.all().order_by()
+    pets = Pet.query.all()
 
     return render_template('pet_list.html', pets=pets)
 
@@ -48,3 +48,4 @@ def add_pet():
 
     else:
         return render_template('new_pet_form.html', form=form)
+

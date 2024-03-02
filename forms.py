@@ -1,5 +1,6 @@
 """Forms for adopt app."""
-from flask_wtf import FlaskForm, StringField, URLField
+from flask_wtf import FlaskForm
+from wtforms import StringField, URLField
 
 class AddPetForm(FlaskForm):
 
