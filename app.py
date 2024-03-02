@@ -53,8 +53,19 @@ def add_pet():
     else:
         return render_template('new_pet_form.html', form=form)
 
-@app.route(f'/{pet_id}')
-def edit_form():
+@app.route('/<pet_id>', methods=['GET', 'POST'])
+def edit_form(pet_id):
+    current_pet = Pet.query.get_or_404(pet_id)
+    form = EditForm(obj = current_pet)
 
-    form = EditForm()
+    if form.validate_on_submit():
+        current_pet.photo_url = form.photo_url.data
+        current_pet.notes = form.notes.data
+        current_pet.available = form.available.data
+        db.session.commit()
 
+        flash(f'{form.name.data} successfully edited!')
+        # This is the get that occurs after the post
+        return redirect('/')
+    else:
+        return render_template('edit_pet_form.html', pet_id=pet_id, form=form)
