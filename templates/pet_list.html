@@ -4,8 +4,11 @@
 
 {% block content %}
 
-<ul>
+{% for msg in get_flashed_messages() %}
+<h3>{{msg}}</h3>
+{% endfor %}
 
+<ul>
 {% for pet in pets %}
 <li>
   <p>{{ pet.name }}</p>
@@ -14,7 +17,6 @@
 </li>
 
 {% endfor %}
-
 </ul>
 
 {% endblock %}

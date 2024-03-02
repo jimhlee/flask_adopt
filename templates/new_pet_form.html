@@ -6,9 +6,6 @@
 
 <form action="/add" id="add_pet_form" name="add_pet_form" method="POST">
   {{ form.hidden_tag() }}
-  {% for msg in get_flashed_messages() %}
-    <h3>{{msg}}</h3>
-  {% endfor %}
 
   {% for field in form
       if field.widget.input_type != 'hidden' %}

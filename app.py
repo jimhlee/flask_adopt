@@ -36,15 +36,19 @@ def add_pet():
     form = AddPetForm()
 
     if form.validate_on_submit():
-        name = form.name.data
-        species = form.species.data
-        photo_url = form.photo_url.data
-        age = form.age.data
-        notes = form.notes.data
+        new_pet = Pet(
+            name = form.name.data,
+            species = form.species.data,
+            photo_url = form.photo_url.data,
+            age = form.age.data,
+            notes = form.notes.data)
 
-        flash(f'{name} added to pet list!')
+        db.session.add(new_pet)
+        db.session.commit()
+
+        flash(f'{form.name.data} added to pet list!')
         # This is the get that occurs after the post
-        return redirect('/add')
+        return redirect('/')
 
     else:
         return render_template('new_pet_form.html', form=form)
