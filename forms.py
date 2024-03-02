@@ -14,10 +14,6 @@ class AddPetForm(FlaskForm):
         'Pet Species',
         validators=[InputRequired()])
 
-    photo_url = URLField(
-        'URL of Pet Photo',
-        validators=[Optional(), URL()])
-
     age = SelectField(
         'Pet Age',
         choices=[
@@ -27,6 +23,26 @@ class AddPetForm(FlaskForm):
             ('senior', 'Senior')
                  ])
 
+    photo_url = URLField(
+        'URL of Pet Photo',
+        validators=[Optional(), URL()])
+
     notes = StringField(
         'Notes',
         validators=[InputRequired()])
+
+
+class EditForm(FlaskForm):
+
+    photo_url = URLField(
+        'URL of Pet Photo',
+        validators=[Optional(), URL()])
+
+    notes = StringField(
+        'Notes',
+        validators=[InputRequired()])
+
+    available = SelectField(
+        'Is Pet Available?',
+        validators=[InputRequired()]
+    )

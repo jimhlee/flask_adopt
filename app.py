@@ -4,7 +4,7 @@ import os
 
 from flask import Flask, render_template, redirect, flash
 from flask_debugtoolbar import DebugToolbarExtension
-from forms import AddPetForm
+from forms import AddPetForm, EditForm
 from models import connect_db, db, Pet
 
 app = Flask(__name__)
@@ -52,4 +52,9 @@ def add_pet():
 
     else:
         return render_template('new_pet_form.html', form=form)
+
+@app.route(f'/{pet_id}')
+def edit_form():
+
+    form = EditForm()
 
